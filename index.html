@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RaySt3R</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+  <script type="module" src="static/js/model-viewer.min.js"></script>
+
+  <link href="static/css/sans.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/selection-panel.css">
+  <link rel="icon" href="https://wangrc.site/MoGePage/static/images/favicon.svg">
+
+  <script src="static/js/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">RaySt3R: Predicting Novel Depth Maps for Zero-Shot Object Completion</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><a href="https://bart-ai.com">Bardienus P. Duisterhof</a><sup>1</sup>,</span>
+              <span class="author-block"><a href="index.html" onclick="return false;">Jan Oberst</a><sup>1,2</sup>,</span>
+              <span class="author-block"><a href="https://wenbowen123.github.io/">Bowen Wen</a><sup>3</sup>,</span>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><a href="https://research.nvidia.com/person/stan-birchfield">Stan Birchfield</a><sup>3</sup>,</span>
+              <span class="author-block"><a href="https://www.cs.cmu.edu/~deva/">Deva Ramanan</a><sup>1</sup>,</span>
+              <span class="author-block"><a href="https://ichnow.ski">Jeffrey Ichnowski</a><sup>1</sup></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Carnegie Mellon University,</span>
+              <span class="author-block"><sup>2</sup>Karlsruhe Institute of Technology,</span>
+              <span class="author-block"><sup>3</sup>NVIDIA</span>
+            </div>
+
+            <!-- <div class="is-size-5 publication-authors" style="margin-top: 0.5em;">
+              <b>arXiv 2025</b>
+            </div> -->
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="static/pdf/rayst3r.pdf" class="external-link button is-normal is-rounded is-dark" target="_blank">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="static/pdf/rayst3r.pdf" class="external-link button is-normal is-rounded is-dark" target="_blank">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://github.com/microsoft/moge" class="external-link button is-normal is-rounded is-dark" target="_blank">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://huggingface.co/spaces/Ruicheng/MoGe" class="external-link button is-normal is-rounded is-dark" target="_blank">
+                    <span class="icon">
+                      🤗
+                    </span>
+                    <span>HF Demo</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <video id="teaser" autoplay controls muted loop playsinline height="100%">
+          <source src="static/videos/teaser/teaser_fixed.mp4" type="video/mp4">
+        </video>
+        <h2 class="subtitle has-text-centered">
+          <span class="dnerf">RaySt3R</span> turns a single masked RGB-D image into complete 3D shapes.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              3D shape completion has broad applications in robotics, digital twin reconstruction, and extended reality (XR). 
+              Although recent advances in 3D object and scene completion have achieved impressive results, existing methods lack 3D consistency, are computationally expensive, and struggle to capture sharp object boundaries. 
+              Our work (RaySt3R) addresses these limitations by recasting 3D shape completion as a novel view synthesis problem. 
+              Specifically, given a single RGB-D image and a foreground object mask, 
+              and a novel viewpoint (encoded as a collection of query rays),
+              we train a feedforward transformer to predict depth maps, object masks, and per-pixel confidence scores for those query rays. 
+              RaySt3R fuses these predictions across multiple query views using a confidence- and occlusion-aware merging algorithm 
+              to reconstruct complete 3D shapes. 
+              We evaluate RaySt3R on synthetic and real-world datasets, and observe it achieves state-of-the-art performance,
+              outperforming the baselines on all datasets by up to 44% in 3D chamfer distance.       
+            </p>
+            <img src="static/images/overview.png" alt="teaser image" style="width: 100%;">
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+    </div>
+  </section>
+
+  <img id="enlarged-image">
+
+  <section class="hero">
+    <div class="container is-max-desktop is-centered">
+      <h2 class="title is-3" style="margin-top: 10px;">Results</h3>
+      <div class="content has-text-justified">
+      </div>
+      <div id="toggleTexturedGallery" class="toggle-container" style="display: none;">
+        <button class="toggle-button toggle-left active">Geometry only</button>
+        <button class="toggle-button toggle-right">Textured</button>
+      </div>
+      <div class="model-wrapper">
+        <div class="tips-wrapper">
+          <div class="tips-icon">💡Tips</div>
+          <div class="tips-text">
+            <p>● Scroll to zoom in/out</p>
+            <p>● Drag to rotate</p>
+            <p>● Press "shift" and drag to pan</p>
+          </div>
+        </div>
+        <model-viewer id="modelViewerGallary" class="model-viewer-texture" loading="eager"
+          poster="static/images/loading.gif" touch-action="pan-y" environment-image="legacy" zoom-sensitivity="0.2"
+          camera-controls disable-tap min-camera-orbit="auto auto 1m" max-camera-orbit="auto auto 10m"
+          shadow-intensity="1" ar style="width: 100%; height: 100%;">
+        </model-viewer>
+      </div>
+      <div id="gallerySelectionPanel" class="selection-panel" style="width: 100%; aspect-ratio: 3.3/1;">
+        <img class="selectable-image selected" name="ycb_52">  
+        <img class="selectable-image" name="ycb_53">
+        <img class="selectable-image" name="hb_3">
+        <img class="selectable-image" name="hb_4">
+        <img class="selectable-image" name="hb_9">
+        <img class="selectable-image" name="hope_2">
+        <img class="selectable-image" name="hope_8">
+      </div>
+    </div>
+  </section>
+  <!--/ Interactive Mesh. -->
+
+  <!-- <section class="hero is-light">
+    <div class="hero-body" style="padding: 0;">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3" style="margin-top: 10px;">Results on Videos</h2>
+        <div id="carouselVideoReconstruction" class="carousel" data-slides-to-scroll="3" data-slides-to-show="3">
+          <div class="item">
+            <video poster="index.html" autoplay controls muted loop playsinline height="100%">
+              <source src="static/videos/video_recon/Friends.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="index.html" autoplay controls muted loop playsinline height="100%">
+              <source src="static/videos/video_recon/Breakdance.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="index.html" autoplay controls muted loop playsinline height="100%">
+              <source src="static/videos/video_recon/MountEverest.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="index.html" autoplay controls muted loop playsinline height="100%">
+              <source src="static/videos/video_recon/Pantry.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="index.html" autoplay controls muted loop playsinline height="100%">
+              <source src="static/videos/video_recon/Train.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="index.html" autoplay controls muted loop playsinline height="100%">
+              <source src="static/videos/video_recon/Venice.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <p style="margin-top: 20px; margin-bottom: 20px;">
+          We predict the point maps for the video frames and 
+          then simply use rigid (similarity) transformations computed from image matching (<a href="https://github.com/PruneTruong/DenseMatching">PDCNet</a>) to register them.
+        </p>
+      </div>
+    </div>
+    
+  </section> -->
+
+  <!-- Model Comparison. -->
+  <section class="hero is-light">
+    <div class="hero-body" style="padding: 0;">
+      <div class="container is-max-desktop" id="comparison_container">
+        <h2 class="title is-3" style="margin-top: 10px; align-self: flex-start;">Qualitative comparison</h3>
+        <div class="content has-text-justified" style="align-self: flex-start;">
+          <p>
+            Select a method from the dropdown menu to compare RaySt3R to the baselines.
+          </p>
+        </div>
+  
+        <div id="toggleTexturedComparison" class="toggle-container" style="display: none;">
+          <button class="toggle-button toggle-left active">Geometry only</button>
+          <button class="toggle-button toggle-right">Textured</button>
+        </div>
+  
+        <div class="model-container" id="model-compare-wrapper">
+          <!-- Model 1 Viewer with Label -->
+          <div class="model-wrapper-comparison">
+            <div class="model-label">RaySt3R</div>
+            <model-viewer id="modelViewerComparison1" class="model-viewer-texture" loading="eager"
+              poster="static/images/loading.gif" touch-action="pan-y" environment-image="legacy" zoom-sensitivity="0.2"
+              camera-controls disable-tap min-camera-orbit="auto auto 1m" max-camera-orbit="auto auto 10m" interaction-prompt="none"
+              shadow-intensity="1" ar style="width: 100%; height: 100%;">
+            </model-viewer>
+          </div>
+          <!-- Model 2 Viewer with Label -->
+          <div class="model-wrapper-comparison">
+            <div class="tips-wrapper">
+              <div class="tips-icon">💡Tips</div>
+              <div class="tips-text">
+                <p>● Scroll to zoom in/out</p>
+                <p>● Drag to rotate</p>
+                <p>● Press "shift" and drag to pan</p>
+              </div>
+            </div>
+            <div id="comparisonFootnote">
+              *No camera intrinsics prediction; using ours instead.
+            </div>
+            <select id="comparisonBaselineSelection" class="dropdown model-label">
+              <option value="octmae">OctMAE</option>
+              <option value="trellis">Trellis</option>
+              <option value="unique3d">Unique3D</option>
+              <option value="scenecomplete">SceneComplete</option>
+              <option value="lari">LaRI</option>
+            </select>
+            <model-viewer id="modelViewerComparison2" class="model-viewer-texture" loading="eager"
+              poster="static/images/loading.gif" touch-action="pan-y" environment-image="legacy" zoom-sensitivity="0.2"
+              camera-controls disable-tap min-camera-orbit="auto auto 1m" max-camera-orbit="auto auto 10m" interaction-prompt="none"
+              shadow-intensity="1" ar style="width: 100%; height: 100%;">
+            </model-viewer>
+          </div>
+        </div>
+        <div class="hero-body" style="padding: 0;">
+          <div class="selection-panel" id="comparisonSelectionPanel" style="width: 90% !important; aspect-ratio: 3.8/1; margin-left: 5%;">
+            <img class="selectable-image selected" name="hb_3">
+            <img class="selectable-image" name="hb_4">
+            <img class="selectable-image" name="hb_9">
+            <img class="selectable-image" name="hp_2">
+            <img class="selectable-image" name="hp_8">
+            <img class="selectable-image" name="ycb_52">
+            <img class="selectable-image" name="ycb_53">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!--/Model Comparison. -->
+
+  <!-- Video Comparison. -->
+  <section class="hero">
+    <div class="hero-body" style="margin: 0 auto; overflow-x: auto; max-width: 70%;">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3" style="margin-top: 30px;">Quantitative Results</h2>
+      </div>
+      <div class="content has-text-justified" style="align-self: flex-start;">
+      </div>
+      <div id="results-table">
+        <!-- Table will be loaded here -->
+      </div>
+    </div>
+  </section>
+
+  <!--/ Video Comparison. -->
+
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@misc{, 
+}</code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content" style="text-align: center;">
+            <p>
+              The page template is borrowed from  <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="static/js/model-viewer.js"></script>
+  <script src="static/js/gallery.js"></script>
+  <script src="static/js/selection-panel.js"></script>
+
+  <script src="static/js/comparison.js"></script>
+
+  <script src="static/js/video_comparison.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="static/js/load-table.js"></script>
+
+</body>
+
+</html>

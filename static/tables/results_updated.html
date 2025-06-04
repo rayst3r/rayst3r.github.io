@@ -1,0 +1,143 @@
+<style>
+  .table-wrapper {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+  table.academic {
+    border-collapse: collapse;
+    font-family: 'Georgia', serif;
+    font-size: 13px;
+    width: 100%;
+    min-width: 800px;
+  }
+  table.academic th, table.academic td {
+    padding: 4px 6px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+  }
+  table.academic thead th {
+    border-bottom: 2px solid #333;
+  }
+  table.academic tbody tr.section-break td {
+    border-top: 2px solid #333;
+    font-weight: bold;
+    text-align: left;
+    background-color: #f9f9f9;
+  }
+  td[data-score] {
+    background-color: hsl(var(--hue), 60%, 85%);
+  }
+  </style>
+<div class="table-wrapper">
+
+  <table class="academic">
+<thead>
+<tr>
+<th rowspan="3">Method</th>
+<th colspan="2">Synthetic</th>
+<th colspan="6">Real</th>
+</tr>
+<tr>
+<th colspan="2">OctMAE</th>
+<th colspan="2">YCB-Video</th>
+<th colspan="2">HomebrewedDB</th>
+<th colspan="2">HOPE</th>
+</tr>
+<tr>
+<th>CD ↓</th><th>F1 ↑</th>
+<th>CD ↓</th><th>F1 ↑</th>
+<th>CD ↓</th><th>F1 ↑</th>
+<th>CD ↓</th><th>F1 ↑</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>VoxFormer</td>
+<td data-score="" style="">44.54</td><td data-score="" style="">0.382</td>
+<td data-score="" style="">30.32</td><td data-score="" style="">0.438</td>
+<td data-score="" style="">34.84</td><td data-score="" style="">0.366</td>
+<td data-score="" style="">47.75</td><td data-score="" style="">0.323</td>
+</tr>
+<tr><td>ShapeFormer</td>
+<td data-score="" style="">39.50</td><td data-score="" style="">0.401</td>
+<td data-score="" style="">38.21</td><td data-score="" style="">0.385</td>
+<td data-score="" style="">40.93</td><td data-score="" style="">0.328</td>
+<td data-score="" style="">39.54</td><td data-score="" style="">0.306</td>
+</tr>
+<tr><td>MCC</td>
+<td data-score="" style="">43.37</td><td data-score="" style="">0.459</td>
+<td data-score="" style="">35.85</td><td data-score="" style="">0.289</td>
+<td data-score="" style="">19.59</td><td data-score="" style="">0.371</td>
+<td data-score="" style="">17.53</td><td data-score="" style="">0.357</td>
+</tr>
+<tr><td>ConvONet</td>
+<td data-score="" style="">23.68</td><td data-score="" style="">0.541</td>
+<td data-score="" style="">32.87</td><td data-score="" style="">0.458</td>
+<td data-score="" style="">26.71</td><td data-score="" style="">0.504</td>
+<td data-score="" style="">20.95</td><td data-score="" style="">0.581</td>
+</tr>
+<tr><td>POCO</td>
+<td data-score="" style="">21.11</td><td data-score="" style="">0.634</td>
+<td data-score="" style="">15.45</td><td data-score="" style="">0.587</td>
+<td data-score="" style="">13.17</td><td data-score="" style="">0.624</td>
+<td data-score="" style="">13.20</td><td data-score="" style="">0.602</td>
+</tr>
+<tr><td>AICNet</td>
+<td data-score="" style="">15.64</td><td data-score="" style="">0.573</td>
+<td data-score="" style="">12.26</td><td data-score="" style="">0.545</td>
+<td data-score="" style="">11.87</td><td data-score="" style="">0.557</td>
+<td data-score="" style="">11.40</td><td data-score="" style="">0.564</td>
+</tr>
+<tr><td>Minkowski</td>
+<td data-score="" style="">11.47</td><td data-score="" style="">0.746</td>
+<td data-score="" style="">8.04</td><td data-score="" style="">0.761</td>
+<td data-score="" style="">8.81</td><td data-score="" style="">0.728</td>
+<td data-score="" style="">8.56</td><td data-score="" style="">0.734</td>
+</tr>
+<tr><td>OCNN</td>
+<td data-score="" style="">9.05</td><td data-score="" style="">0.782</td>
+<td data-score="" style="">7.10</td><td data-score="" style="">0.778</td>
+<td data-score="" style="">7.02</td><td data-score="" style="">0.792</td>
+<td data-score="" style="">8.05</td><td data-score="" style="">0.742</td>
+</tr>
+<tr class="section-break"><td colspan="9">Recent Works</td></tr>
+<!-- These values can be color-coded similarly if desired -->
+<tr><td>LaRI (arXiv '25)</td>
+<td data-score="" style="">39.22</td><td data-score="" style="">0.283</td>
+<td data-score="" style="">11.41</td><td data-score="" style="">0.658</td>
+<td data-score="" style="">22.23</td><td data-score="" style="">0.414</td>
+<td data-score="" style="">18.64</td><td data-score="" style="">0.528</td>
+</tr>
+<tr><td>SceneComplete (arXiv '24)</td>
+<td data-score="" style="">81.57</td><td data-score="" style="">0.289</td>
+<td data-score="" style="">96.63</td><td data-score="" style="">0.359</td>
+<td data-score="" style="">85.81</td><td data-score="" style="">0.416</td>
+<td>N/A</td><td>N/A</td>
+</tr>
+<tr><td>Trellis (CVPR '25)</td>
+<td data-score="" style="">61.74</td><td data-score="" style="">0.227</td>
+<td data-score="" style="">22.94</td><td data-score="" style="">0.443</td>
+<td data-score="" style="">35.29</td><td data-score="" style="">0.354</td>
+<td data-score="" style="">20.25</td><td data-score="" style="">0.443</td>
+</tr>
+<tr><td>Unique3D (arXiv '24)</td>
+<td data-score="" style="">44.62</td><td data-score="" style="">0.244</td>
+<td data-score="" style="">17.56</td><td data-score="" style="">0.468</td>
+<td data-score="" style="">25.41</td><td data-score="" style="">0.329</td>
+<td data-score="" style="">26.37</td><td data-score="" style="">0.322</td>
+</tr>
+<tr><td>OctMAE (ECCV '24)</td>
+<td data-score="" style="">6.48</td><td data-score="" style="">0.839</td>
+<td data-score="" style="">6.40</td><td data-score="" style="">0.800</td>
+<td data-score="" style="">6.14</td><td data-score="" style="">0.819</td>
+<td data-score="" style="">6.97</td><td data-score="" style="">0.803</td>
+</tr>
+<tr class="section-break"><td colspan="9"></td></tr>
+<tr><td><strong>RaySt3R</strong></td>
+<td data-score="" style="--hue: 120;"><strong>5.21</strong></td><td data-score="" style="--hue: 120;"><strong>0.893</strong></td>
+<td data-score="" style="--hue: 120;"><strong>3.56</strong></td><td data-score="" style="--hue: 120;"><strong>0.930</strong></td>
+<td data-score="" style="--hue: 120;"><strong>4.75</strong></td><td data-score="" style="--hue: 120;"><strong>0.889</strong></td>
+<td data-score="" style="--hue: 120;"><strong>3.92</strong></td><td data-score="" style="--hue: 120;"><strong>0.926</strong></td>
+</tr>
+</tbody>
+</table>
+</div> 
